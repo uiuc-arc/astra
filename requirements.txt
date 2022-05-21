@@ -3,7 +3,7 @@ numpy
 matplotlib
 pandas
 scipy
-csv
+python-csv
 argparse
-re
+regex
 ast

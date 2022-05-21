@@ -17,9 +17,7 @@ binary_data = (length(levels(as.factor(ddd)))==2 && min(ddd)==0)
 if ((!integer_data) && (!binary_data)) {
     if (identical("outliers", args[3])) { 
         if (i > 0){
-            #assign(datagood, sapply(ddd, function(x) ifelse(runif(1) < i/100, x*abs(rnorm(1,5,sd(ddd)/10)), x)))
-            ddd[seq(length(ddd), 5, -floor(100/i))] <- ddd[seq(length(ddd), 5, -floor(100/i))]*abs(rnorm(1,5,sd(ddd)))
-            #ddd[seq(length(ddd), 5, -floor(100/i))] <- ddd[seq(length(ddd), 5, -floor(100/i))]*abs(rnorm(1, k / 2,sd(ddd)))
+            assign(datagood, sapply(ddd, function(x) ifelse(runif(1) < i/100, x*abs(rnorm(1,i/2,sd(ddd))), x)))
         }; 
         assign(datagood, ddd)
     # }
@@ -29,9 +27,8 @@ if ((!integer_data) && (!binary_data)) {
         y_mean = mean(ddd); y_sd = sd(ddd); 
         if (y_mean < 0)
             i = -i;
-        # other_mean = y_mean + i * y_sd; 
-        #assign(datagood, sapply(ddd, function(x) ifelse(runif(1) < 0.2,x + (i * y_sd)/2, x)))
-        assign(datagood, sapply(ddd, function(x) ifelse(runif(1) < 0.2,rnorm(1, y_mean + (i * y_sd)/2, y_sd), x)))
+        # other_mean = y_mean + i * y_sd;  
+        assign(datagood, sapply(ddd, function(x) ifelse(runif(1) < 0.2,rnorm(1, y_mean + (i * y_sd)/2, 0.1 * i), x)))
     } else if (identical("skew", args[3])) { 
         library(e1071);
         y_min = min(ddd); y_max = max(ddd); y_mean = mean(ddd);

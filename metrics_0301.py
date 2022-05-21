@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # ~/c4pp/metrics/metrics_0301.py -c -fs rw_summary_1000 -m rhat -m ess -o avg -o extreme -rt
 # ~/c4pp/metrics/metrics_0301.py -fr output_100000.gz -fm output_1000_1.gz -fm output_1000_2.gz -fm output_1000_3.gz -fm output_1000_4.gz  -m kl  -m ks -s 200 -s 100 -l 100
