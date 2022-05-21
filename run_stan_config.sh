@@ -69,7 +69,7 @@ if [ "$variational" = true ] ; then
     else
         timeout 8m $stan_install_dir/bin/stansummary output_${vsamples}_*${sampleext} --csv_file=rw_summary_${vsamples} &> /dev/null
     fi
-    cp rw_summary_* $input_file_path
+    cp rw_summary_* $input_file_path &> /dev/null
 else
     # do sampling, get metrics and rt
 if [ "$get_ref" = true ] ; then
@@ -96,7 +96,7 @@ if [ "$get_ref" = true ] ; then
         cp stanout_${ref} $input_file_path/${curr_model_name}_stanout_${ref}.txt
         exit 0
     else
-        cp rw_summary_${ref} $input_file_path/${curr_model_name}_rw_summary_${ref}.txt
+        cp rw_summary_${ref} $input_file_path/${curr_model_name}_rw_summary_${ref}.txt &> /dev/null
     fi
     conv_ref=$($metrics_file_path -c -fs rw_summary_${ref} -m rhat -m ess -o avg -o extreme)
 fi
