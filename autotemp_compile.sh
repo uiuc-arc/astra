@@ -99,6 +99,7 @@ else
 
     for ff in `ls ${output_dir}/${org_prog}_robust_*/*${attack}*/*all*diff2_$metric_m | grep -v "robust_local\|robust_mix" `; do
         parsss=${ff#*_robust_}
+        parsss=${parsss#*p}
         echo "robust ${parsss%%/*} result:"
         cat $ff
     done

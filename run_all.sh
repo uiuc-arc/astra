@@ -2,15 +2,13 @@
 
 for aa in outliers hiddengroup skew ; do 
     sed -i 's/^attack=.*$/attack='$aa'/' autotemp.config; 
-    for algo in mcmc advi; do 
+    for algo in advi mcmc; do 
         sed -i 's/^algo=.*$/algo='$algo'/' autotemp.config; 
-        for ff in `cat prog_all_39_20220217_$aa`; do 
-            # | xargs -P 8 -n 1 -I {} sh -c 'ff={}; if [ -z "${ff##*mix*}" ]; then ./autotemp_compile.sh  $ff rhat; else ./autotemp_compile.sh  $ff rhat; fi'
-            if [[ $ff == *"mix"* ]]; then 
-                ./autotemp_compile.sh $ff pam; 
-            else
-                ./autotemp_compile.sh $ff mse; 
-            fi
+        # cat prog_$aa | xargs -P 8 -n 1 -I {} sh -c 'ff={}; ./autotemp_compile.sh $ff mse'
+        for ff in `cat prog_$aa`; do 
+            ./autotemp_compile.sh $ff mse; 
         done
     done
 done # |& tee temp
+sed -i 's/^attack=.*$/attack=outliers/' autotemp.config; 
+sed -i 's/^algo=.*$/algo=advi/' autotemp.config; 
