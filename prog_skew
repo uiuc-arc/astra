@@ -1,3 +1,12 @@
+anova_radon_nopred_chr
+electric_chr
+hiv
+radon_no_pool
+radon.pooling
+radon_vary_si
+unemployment
+y_x
+kidscore_momwork
 lightspeed
 normal_mixture
 normal_mixture_k_prop
@@ -11,12 +20,3 @@ stochastic-volatility
 gp-fit-pois
 koyck
 pilots
-anova_radon_nopred_chr
-electric_chr
-hiv
-radon_no_pool
-radon.pooling
-radon_vary_si
-unemployment
-y_x
-kidscore_momwork

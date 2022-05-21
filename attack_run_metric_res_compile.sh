@@ -10,7 +10,7 @@ program_name=$(echo $prog | rev | cut -d'/' -f 1 | rev)
 script_dir=$(realpath $(dirname ${BASH_SOURCE[0]}))
 source $script_dir/autotemp.config
 
-cp $prog/truth_file $prog/${program_name}_res_$attack/
+cp $prog/truth_file $prog/${program_name}_res_$attack/ &> /dev/null
 
 if [ "$algo" = "advi" ]; then
     ./attack_run_compile.sh $prog true $attack $yyy
