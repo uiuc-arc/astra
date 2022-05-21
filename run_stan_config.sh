@@ -56,7 +56,7 @@ else
 fi
 if [ `ls $data_file | wc -l` -eq 0  ]; then echo "no data file"; echo "no data file" > $input_file_path/${curr_model_name}_build_error.txt; exit 0; fi
 
-if [  -f csvpipe ]; then rm csvpipe; fi
+if [  -e csvpipe ]; then rm csvpipe; fi
 mkfifo csvpipe
 
 if [ "$variational" = true ] ; then
@@ -118,7 +118,7 @@ if [ "$get_min" = true ]; then
         timeout 8m $stan_install_dir/bin/stansummary output_${min}_*${sampleext} --csv_file=rw_summary_${min} &> /dev/null
         if [ ! -f rw_summary_${min} ];then  exit 0; fi
     fi
-    cp rw_summary_* $input_file_path
+    cp rw_summary_* $input_file_path &> /dev/null
     if [ "$get_ref" = true ] ; then
         conv_min=$($metrics_file_path -c -fs rw_summary_${min} -m rhat -m ess -o avg -o extreme)
         #
@@ -148,7 +148,8 @@ if [ "$archive" = true ] ; then
         mv rt_0401 ${dest_model_name}/
         mv ${dest_model_name}/rt_0401 $dest_path/${dest_model_name}_rt_0401.txt
     fi
-    mv rw_* $dest_model_name
+    mv rw_* $dest_model_name &> /dev/null
+
     mv stanout_* $dest_model_name
     mv output*${sampleext} $dest_model_name
     if [ "$tar_archive" = true ]; then

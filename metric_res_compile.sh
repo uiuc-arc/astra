@@ -50,9 +50,11 @@ for i in $noise_levels; do
                     # temp fix for mixture mse=pam
                     res_path_file_name=${res_path##*/}
                     res_path_model_name=${res_path_file_name%%_robust*}
+                    echo "#################### $res_path"
                     echo "#################### $res_path_model_name"
                     mmm+="-m $mm "
                 done
+                if [ ! -f $res_path/rw_summary_${outputext}_n_${i}_${j} ];then  continue; fi
                 echo "-c -fs $res_path/rw_summary_${outputext}_n_${i}_${j} -ft $res_path/truth_file -rb $mmm"
                 wass=$($metrics_file -c -fs $res_path/rw_summary_${outputext}_n_${i}_${j} -ft $res_path/truth_file -rb $mmm)
             else
