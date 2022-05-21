@@ -50,9 +50,8 @@ for i in $noise_levels; do
                     # temp fix for mixture mse=pam
                     res_path_no_slash="$(echo ${res_path} | sed 's:/*$::')"
                     res_path_file_name=${res_path_no_slash##*/}
-                    res_path_model_name=${res_path_file_name%%_robust*}
-                    echo "#################### $res_path_no_slash"
-                    echo "#################### $res_path_file_name"
+                    res_path_trans_name=${res_path_file_name%%_res*}
+                    res_path_model_name=${res_path_trans_name%%_robust*}
                     echo "#################### $res_path_model_name"
                     mmm+="-m $mm "
                 done
