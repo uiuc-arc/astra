@@ -4,3 +4,4 @@ mkdir ./cmdstan-2.16.0; tar -xf cmdstan-2.16.0.tar.gz -C ./cmdstan-2.16.0 --stri
 cd ./cmdstan-2.16.0
 echo "Compiling CmdStan, this could take a while..."
 make build
+cd ..
