@@ -51,7 +51,8 @@ for i in $noise_levels; do
                     res_path_no_slash=${res_path%%+(/)}
                     res_path_file_name=${res_path_no_slash##*/}
                     res_path_model_name=${res_path_file_name%%_robust*}
-                    echo "#################### $res_path"
+                    echo "#################### $res_path_no_slash"
+                    echo "#################### $res_path_file_name"
                     echo "#################### $res_path_model_name"
                     mmm+="-m $mm "
                 done

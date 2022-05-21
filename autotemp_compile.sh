@@ -31,7 +31,7 @@ cp ${input_org_dir}/${org_prog}/${org_prog}.data.R ${output_dir}/$org_prog/
 
 for dd in `ls -d ${input_trans_dir}/${org_prog}_robust_*/ ${input_trans_dir}/${org_prog}/`; do 
     pp=$(echo $dd | rev | cut -d'/' -f 2 | rev); 
-    echo $pp; 
+    echo "Evaluating $pp..."; 
     if [ ! -d ${output_dir}/$pp ]; then mkdir ${output_dir}/$pp; fi
     cp $dd/*.stan ${output_dir}/$pp; 
     cp ${input_trans_dir}/$org_prog/$org_prog.data.R ${output_dir}/$pp/${pp}.data.R;
