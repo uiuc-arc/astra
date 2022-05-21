@@ -1,0 +1,8 @@
+generated quantities{
+real theta_test[N];
+for(n in 1 : N)
+{
+theta_test=uniform_rng(0,1);
+}
+}
+

@@ -1,0 +1,8 @@
+generated quantities{
+real kid_score_test[N];
+for(observe_i in 1 : N)
+{
+kid_score_test[observe_i]=normal_rng(beta[1]+(beta[2])*(work2[observe_i])+(beta[3])*(work3[observe_i])+(beta[4])*(work4[observe_i]),sigma);
+}
+}
+

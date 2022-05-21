@@ -1,0 +1,55 @@
+@limits <lower=0>
+int N : 40
+@limits <lower=0>
+int n_groups : 5
+@limits <lower=0>
+int n_scenarios : 8
+@limits <lower=1,upper=n_groups>
+int group_id[N] : [1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5]
+@limits <lower=1,upper=n_scenarios>
+int scenario_id[N] : [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8]
+vector [N] y : [0.375, 0, 0.375, 0, 0.333333333333333, 1, 0.125, 1, 0.25, 0, 0.5, 0.125, 0.5, 1, 0.125, 0.857142857142857, 0.5, 0.666666666666667, 0.333333333333333, 0, 0.142857142857143, 1, 0, 1, 0.142857142857143, 0, 0.714285714285714, 0, 0.285714285714286, 1, 0.142857142857143, 1, 0.428571428571429, 0, 0.285714285714286, 0.857142857142857, 0.857142857142857, 0.857142857142857, 0.142857142857143, 0.75]
+@prior
+vector [n_groups] gamma
+@prior
+vector [n_scenarios] delta
+@prior
+float mu
+@limits <lower=0,upper=100>
+@prior
+float sigma_gamma
+@limits <lower=0,upper=100>
+@prior
+float sigma_delta
+@limits <lower=0,upper=100>
+@prior
+float sigma_y
+@prior
+@limits <lower=0,upper=0.5>
+float robust_prob_outlier
+
+@prior
+@limits <lower=log((sigma_y)^2)>
+float robust_outlier_log_var
+
+@prior
+@limits 
+float robust_outlier_log_var_mu
+
+@prior
+@limits <lower=0>
+float robust_outlier_log_var_std
+
+@blk start transformedparam
+vector [N] y_hat
+@blk end transformedparam
+for(i in 1:N){
+y_hat[i] = mu+gamma[group_id[i]]+delta[scenario_id[i]]
+}
+gamma = normal(0,sigma_gamma)
+delta = normal(0,sigma_delta)
+for(observe_i in 1:N){
+robust_outlier_log_var=normal(robust_outlier_log_var_mu,robust_outlier_log_var_std)
+target = target + log_mix(robust_prob_outlier, normal_lpdf(y[observe_i],y_hat[observe_i],sqrt(exp(robust_outlier_log_var))), normal_lpdf(y[observe_i],y_hat[observe_i],sigma_y))
+}
+

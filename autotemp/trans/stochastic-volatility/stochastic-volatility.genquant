@@ -1,0 +1,8 @@
+generated quantities{
+real y_test[T];
+for(t in 1 : T)
+{
+y_test[t]=normal_rng(0,exp(h[t]/2));
+}
+}
+

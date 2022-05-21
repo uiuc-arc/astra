@@ -1,0 +1,8 @@
+generated quantities{
+real y_test[N];
+for(observe_i in 1 : N)
+{
+y_test[observe_i]=normal_rng(y_hat[observe_i],sigma_y);
+}
+}
+

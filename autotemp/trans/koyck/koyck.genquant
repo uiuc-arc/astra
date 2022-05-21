@@ -1,0 +1,8 @@
+generated quantities{
+    real y_test[T];
+    y_test[1] = y[1];
+    for(t in 2 : T)
+    {
+        y_test[t]=normal_rng(alpha+beta*(x[t])+lambda*(y_test[t-1]),sigma);
+    }
+}

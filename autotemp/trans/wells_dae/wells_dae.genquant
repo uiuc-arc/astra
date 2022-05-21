@@ -1,0 +1,8 @@
+generated quantities{
+real switched_test[N];
+for(observe_i in 1 : N)
+{
+switched_test[observe_i]=bernoulli_logit_rng(beta[1]+(beta[2])*(dist100[observe_i])+(beta[3])*(arsenic[observe_i])+(beta[4])*(educ4[observe_i]));
+}
+}
+

@@ -1,0 +1,5 @@
+generated quantities{
+real log_lik;
+log_lik = 1.2; # place holder
+}
+

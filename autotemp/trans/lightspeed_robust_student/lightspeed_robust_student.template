@@ -1,0 +1,16 @@
+@limits <lower=0>
+int N : 66
+vector [N] y : [28, 26, 33, 24, 34, -44, 27, 16, 40, -2, 29, 22, 24, 21, 25, 30, 23, 29, 31, 19, 24, 20, 36, 32, 36, 28, 25, 21, 28, 29, 37, 25, 28, 26, 30, 32, 36, 26, 30, 22, 36, 23, 27, 27, 28, 27, 31, 27, 26, 33, 26, 32, 32, 24, 39, 28, 24, 25, 32, 25, 29, 27, 28, 29, 16, 23]
+@prior
+vector [1] beta
+@limits <lower=0>
+@prior
+float sigma
+@prior
+@limits <lower=0,upper=10>
+float robust_t_nu
+
+for(observe_i in 1:N){
+target = target + student_t_lpdf(y[observe_i], robust_t_nu, beta[1], sigma)
+}
+

@@ -1,0 +1,13 @@
+generated quantities{
+real y_test[N];
+  vector[N] f;
+  matrix[N, N] L_K;
+
+  L_K = L_cov_exp_quad_ARD(x, alpha, rho, delta);
+  f = L_K * eta;
+for(observe_i in 1 : N)
+{
+y_test[observe_i]=normal_rng(f[observe_i],sigma);
+}
+}
+
