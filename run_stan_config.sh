@@ -157,7 +157,7 @@ if [ "$archive" = true ] ; then
         mv $dest_model_name.tar.gz $dest_path/
     else
         # mv $dest_model_name $dest_path/
-        rsync -av $dest_model_name $dest_path/
+        rsync -a $dest_model_name $dest_path/
         rm -r $dest_model_name
     fi
     rm noisy_*
