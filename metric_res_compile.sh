@@ -52,7 +52,7 @@ for i in $noise_levels; do
                     res_path_file_name=${res_path_no_slash##*/}
                     res_path_trans_name=${res_path_file_name%%_res*}
                     res_path_model_name=${res_path_trans_name%%_robust*}
-                    echo "#################### $res_path_model_name"
+                    if [[ $res_path_model_name == *"mix"* ]]; then mm="pam"; fi
                     mmm+="-m $mm "
                 done
                 if [ ! -f $res_path/rw_summary_${outputext}_n_${i}_${j} ];then  continue; fi
