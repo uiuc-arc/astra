@@ -9,4 +9,4 @@ if [ ! -e cmdstan-2.16.0/bin/stanc ]; then
     cd ..
 fi
 # install python packages
-pip install -r requirements.txt
+pip install scikit-learn numpy matplotlib pandas scipy python-csv argparse regex
