@@ -18,7 +18,7 @@
 # This script calls attack_run_metric_res_compile.sh to run the models and calculate metrics
 
 org_prog=$1
-#attack=replace #twomode #skew
+#attack=outliers #hiddengroup #skew
 metric_m=$2 # mse mad wass pl1 pr2 pam
 script_dir=$(realpath $(dirname ${BASH_SOURCE[0]}))
 source $script_dir/autotemp.config
@@ -80,7 +80,7 @@ done
 
 if [ "$algo" = "advi" ]; then
     #for attack in skew; do
-    ls {${output_dir}/${org_prog}_robust_*/,${output_dir}/${org_prog}/} -d | xargs -P 8 -n 1 -I {} sh -c "echo {};./attack_run_metric_res_compile.sh {} ${attack} ${metric_m} ${datagood}"
+    ls {${output_dir}/${org_prog}_robust_*/,${output_dir}/${org_prog}/} -d | xargs -P 1 -n 1 -I {} sh -c "echo Evaluating {}...;./attack_run_metric_res_compile.sh {} ${attack} ${metric_m} ${datagood}"
     #done
     echo "original result:"
     cat ${output_dir}/${org_prog}/*${attack}*/*all*vb_$metric_m

@@ -48,7 +48,8 @@ for i in $noise_levels; do
                 mmm=""
                 for mm in $metric_m; do
                     # temp fix for mixture mse=pam
-                    res_path_file_name=${res_path##*/}
+                    res_path_no_slash=${res_path%%+(/)}
+                    res_path_file_name=${res_path_no_slash##*/}
                     res_path_model_name=${res_path_file_name%%_robust*}
                     echo "#################### $res_path"
                     echo "#################### $res_path_model_name"
