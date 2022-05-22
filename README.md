@@ -95,8 +95,9 @@ You may configure the experiment with `autotemp.config`:
 4. `algo`: the inference algorithm, one of `nuts` or `advi`
 
 
-#### To reproduce the results in the paper, run 
+#### To run all the experiments in the paper, run 
 ```
+./run_all.sh
 ```
 
 # ASTRA Robustness Improving Transformations
@@ -114,7 +115,7 @@ Here is the structure for the source code:
     ├── TransformerRunner.java     # Entry point, find all files to transform in a given directory
     └── util/
         ├── CFGUtil.java           # Pre-analysis of the program to get prior and data
-        ├── ObserveToLoop.java     # Convert vectorized statements to loop before transformations
+        ├── ObserveToLoop.java     # Convert vectorized statements to loops (prepare for transformations)
         ├── OrgGenCode.java        # Generate code for posterior prediction for robustness evaluation
         ├── OrgPredCode.java       # Pre-analysis to find where to apply the transformations
         ├── SampleToTarget.java    # Convert sampling statement to target (required by Reweighting)
