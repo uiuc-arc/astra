@@ -2,7 +2,6 @@
 
 # Add original.data.R with noise and save a noisy.data.R under the same directory as original.data.R
 # Usage: ./ddd_attack.R original.data.R noise_level attack_name data_object_name
-# Example: ./ddd_attack.R ../templates/stan_stagnant2_robust/stan_stagnant2_robust.data.R 8 outliers y
 
 #library("rstan")
 args <- commandArgs(trailingOnly = TRUE)

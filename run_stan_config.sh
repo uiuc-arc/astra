@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-# run the stan file for reference iters and min iters 4 times
-#     calc all the metrics > ${curr_model_name}_metrics_out_0318_2
-#     calc runtime info for 10-100 iters > ${curr_model_name}_rt_0401
-#     tar the rest sample files & outputs to the original file path
-# Usage:
-# ./thisfile stanmodeldirpath
-# sed -n '1,1000p' progs_rest | tail |  xargs -P 10 -n 1 -I {} sh -c "./run_em_0401.sh {}"
-# (used for running on galeb, where progs_rest contains something like progs20190404-025616567330/progs20190404-025616567330_prob_rand_3
 script_dir=$(realpath $(dirname ${BASH_SOURCE[0]}))
 
 source ./run_stan.config
@@ -162,10 +154,3 @@ if [ "$archive" = true ] ; then
     fi
     rm noisy_*
 fi
-#for ss in `ls stanout_*`; do mv $ss ${curr_model_name}_$ss; cp ${curr_model_name}_$ss $org_path/${curr_model_name}_$ss.txt; done
-#for gg in `ls output_*${sampleext}`; do mv $gg $org_path/${curr_model_name}_$gg; done
-#cd $org_path
-
-#mv *${sampleext} /scratch/mnt/em_0401/
-#mkdir /scratch/mnt/em_0401/$ff
-#mv *${sampleext} /scratch/mnt/em_0401/$ff

@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
 
-# ~/c4pp/metrics/metrics_0301.py -c -fs rw_summary_1000 -m rhat -m ess -o avg -o extreme -rt
-# ~/c4pp/metrics/metrics_0301.py -fr output_100000.gz -fm output_1000_1.gz -fm output_1000_2.gz -fm output_1000_3.gz -fm output_1000_4.gz  -m kl  -m ks -s 200 -s 100 -l 100
-# ./metrics_0301.py -fc output_1000.csv -fc output_100000_thin.csv -m t -m ks -m kl -m smkl -m hell -w 1000 -d
-# ./metrics_0301.py -fm output_1000.csv -fr output_100000_thin.csv -m t -m ks -m kl  -t 0.6 -t 0.5 -t 9
-# ./metrics_0301.py -fr output.csv -fpyro samples -m t -m ks -m kl -m smkl -m hell -d
-# ./metrics_0301.py -fr output_1000_1.gz -fm output_1000_2.gz -m kl -o ext -o avg  -u ~/Documents/are/TestMin/progs20190331-173414535462_prob_rand_14_param_use
-#  ~/Documents/are/c4pp/c4pp/metrics/metrics_0301.py  -fdata noisy.data.R -fm output_2000_1 -fm output_2000_2 -fm output_2000_3 -fm output_2000_4 -m lpml -w 1000
 
 import csv
 import sys
@@ -895,7 +888,7 @@ if __name__ == "__main__":
             help="Add check for small variance but similar mean value")
     pp.add_argument("-d", "--debug", action="store_true", default=False,
             help="Print the metric result for each parameter")
-    pp.add_argument("-u", "--unused", type=file,
+    pp.add_argument("-u", "--unused",
             help="File contains unused parameters. Unused paramters are\
                     ignored in metrics calucation")
     pp.add_argument("-ps", "--param_size_limit", type= int, default=np.inf,

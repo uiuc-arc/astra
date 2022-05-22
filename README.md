@@ -4,7 +4,8 @@ This evaluator automatically evaluates the robustness of the original model and 
 The metric is the MSE of the posterior predicted data compared to the original data, by default averaged over five runs.
 
 ### Prerequisites
-ASTRA requires Bash 4, Python >= 3.5, R >= 3.4
+**ASTRA requires Bash 4, Python >= 3.5, R >= 3.4**
+We tested ASTRA on Ubuntu 16.04 and Ubuntu 20.04
 
 ## Installation
 Run
@@ -24,7 +25,7 @@ In the end, it will print the MSE scores for different versions of this model. Y
 
 For example, you may run 
 ```
-./autotemp_compile.sh lightspeed mse
+./autotemp_compile.sh anova_radon_nopred_chr mse
 ```
 After compilation and running the programs, it will the give evaluation result in the end:
 ```
@@ -96,4 +97,28 @@ You may configure the experiment with `autotemp.config`:
 
 #### To reproduce the results in the paper, run 
 ```
+```
+
+# ASTRA Robustness Improving Transformations
+
+The Java source code for ASTRA automated transformations is under `transformations`.
+Here is the structure for the source code:
+
+```
+└── transformations/
+    ├── Localizer.java             # Localization transformation
+    ├── MixNormal.java             # Contaminated group mixture transformation
+    ├── NewNormal2T.java           # Normal-to-Student-T transformation
+    ├── ReparamLocalizer.java      # Reparameterization and Localization of the Scale Parameter
+    ├── Reweighter.java            # Bayesian Data Reweighting transformation
+    ├── TransformerRunner.java     # Entry point, find all files to transform in a given directory
+    └── util/
+        ├── CFGUtil.java           # Pre-analysis of the program to get prior and data
+        ├── ObserveToLoop.java     # Convert vectorized statements to loop before transformations
+        ├── OrgGenCode.java        # Generate code for posterior prediction for robustness evaluation
+        ├── OrgPredCode.java       # Pre-analysis to find where to apply the transformations
+        ├── SampleToTarget.java    # Convert sampling statement to target (required by Reweighting)
+        ├── StanFileWriter.java    # Translate the transformed programs back to Stan language
+        ├── TargetToPL.java        # Generate code to get predictive likelihood
+        └── TransWriter.java       # Apply all the transformations
 ```
